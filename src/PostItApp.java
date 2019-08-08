@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.io.Console;
 
 /**
  * @author Nicolas Herschke
@@ -6,17 +6,22 @@ import java.util.Scanner;
 
 public class PostItApp {
     public static void main(String[] args) {
+        Console c = System.console();
+        if (c == null) {
+            System.err.println("No console.");
+            System.exit(1);
+        }
+
         boolean quit = false;
         Wall wall = new Wall();
-        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
 
-        System.out.format("Welcome to your post it wall.%n");
+        c.printf("Welcome to your post it wall.%n");
 
         while (!quit) {
-            System.out.format("[p]rint | [n]ew | [r]emove | [s]ave | [l]oad | [q]uit%n");
+            c.printf("[p]rint | [n]ew | [r]emove | [s]ave | [l]oad | [q]uit%n");
             String choice;
 
-            choice = scanner.next();
+            choice = c.readLine();
 
             switch (choice) {
                 case "p":
@@ -25,8 +30,8 @@ public class PostItApp {
                     break;
 
                 case "n":
-                    System.out.print("Note: ");
-                    String text = scanner.next();
+                    c.printf("Note: ");
+                    String text = c.readLine();
                     wall.add(new PostIt(text));
                     break;
 
@@ -41,14 +46,12 @@ public class PostItApp {
                     break;
 
                 default:
-                    System.out.format("Option is not recognized.%n");
+                    System.out.format("Option does not exist.%n");
                     break;
             }
         }
 
-        if (quit) {
-            scanner.close();
+        if (quit)
             System.exit(0);
-        }
     }
 }
