@@ -5,6 +5,10 @@ public class PostIt {
         this.note = note;
     }
 
+    /**
+     * Prints an ascii-art post it
+     * @param wall The instance of Wall to post this on
+     */
     public void post(Wall wall) {
         int rowsNeeded = (int) Math.ceil(note.length() / 13.0);
         if (rowsNeeded > 1)
@@ -13,6 +17,12 @@ public class PostIt {
             printOneLiner();
     }
 
+    /**
+     * Formats the text so that the posts it always have the same width
+     * @param note The text to put on the post it
+     * @param rowsNeeded The amount of rows needed to display the text
+     * @return A string array containing the note broken up into lines
+     */
     public String[] formatNote(String note, int rowsNeeded) {
         String[] rows = new String[rowsNeeded];
         for (int i = 0; i < rows.length; i++) {
@@ -30,14 +40,13 @@ public class PostIt {
         return rows;
     }
 
+    /**
+     * Prints a post it if the note only contains one line
+     */
     public void printOneLiner() {
-        int spacesToFill = note.length() - 13;
-
-        if (spacesToFill > 0) {
-            String padding = "";
-            for (int i = 0; i < spacesToFill; i++)
-                padding += " ";
-            note += padding;
+        if (note.length() < 13) {
+            while (note.length() < 13)
+                note += " ";
         }
 
         printTop();
@@ -47,6 +56,10 @@ public class PostIt {
         printBottom();
     }
 
+    /**
+     * Prints a post it if the text contains multiple lines
+     * @param amountOfRows The amount of rows needed to print the text
+     */
     public void printMultiLiner(int amountOfRows) {
         String[] rowsInNote = formatNote(note, amountOfRows);
 
@@ -58,14 +71,23 @@ public class PostIt {
         printBottom();
     }
 
+    /**
+     * Prints the top part of a post it
+     */
     public void printTop() {
         System.out.format(" _______________%n");
     }
 
+    /**
+     * Prints the middle part of a post it
+     */
     public void printMiddle() {
         System.out.format("|               |%n");
     }
 
+    /**
+     * Prints the bottom part of a post it
+     */
     public void printBottom() {
         System.out.format("|_______________|%n");
     }

@@ -1,17 +1,17 @@
-import java.io.IOException;
 import java.util.Scanner;
+
+/**
+ * @author Nicolas Herschke
+ */
 
 public class PostItApp {
     public static void main(String[] args) {
+        Wall wall = new Wall();
         Scanner scanner = new Scanner(System.in);
 
-        Wall wall = new Wall();
-        PostIt test = new PostIt("Feed the cat!");
-        PostIt longer = new PostIt("Feed the cat and don't forget the dog!");
-        PostIt evenLonger = new PostIt("Brush my teeth and feed the guinea bugs and give the cat a nice treat...");
-
-        test.post(wall);
-        longer.post(wall);
-        evenLonger.post(wall);
+        if (scanner.hasNextLine()) {
+            String postNote = scanner.nextLine();
+            wall.add(new PostIt(postNote));
+        }
     }
 }
