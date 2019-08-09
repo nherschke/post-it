@@ -1,4 +1,6 @@
 import java.io.Console;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Nicolas Herschke
@@ -14,6 +16,15 @@ public class PostItApp {
 
         boolean quit = false;
         Wall wall = new Wall();
+
+        File storedNotes = new File("notes.txt");
+        if (!storedNotes.exists()) {
+            try {
+                storedNotes.createNewFile();
+            } catch (IOException e) {
+                System.err.format("File %s could not be created.", storedNotes);
+            }
+        }
 
         c.printf("Welcome to your post it wall.%n");
 
@@ -38,6 +49,11 @@ public class PostItApp {
                     break;
 
                 case "s":
+                    try {
+                        wall.savePosts(storedNotes);
+                    } catch (IOException e) {
+                        System.err.format("Notes could not be saved.");
+                    }
                     break;
 
                 case "l":

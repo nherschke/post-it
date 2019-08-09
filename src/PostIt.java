@@ -18,12 +18,12 @@ public class PostIt {
     }
 
     /**
-     * Formats the text so that the posts it always have the same width
+     * Formats the text so that the post its always have the same width
      * @param note The text to put on the post it
      * @param rowsNeeded The amount of rows needed to display the text
      * @return A string array containing the note broken up into lines
      */
-    public String[] formatNote(String note, int rowsNeeded) {
+    public String[] splitUpNote(String note, int rowsNeeded) {
         String[] rows = new String[rowsNeeded];
         for (int i = 0; i < rows.length; i++) {
             if ((i+1)*13 < note.length())
@@ -61,7 +61,7 @@ public class PostIt {
      * @param amountOfRows The amount of rows needed to print the text
      */
     public void printMultiLiner(int amountOfRows) {
-        String[] rowsInNote = formatNote(note, amountOfRows);
+        String[] rowsInNote = splitUpNote(note, amountOfRows);
 
         printTop();
         printMiddle();
@@ -90,5 +90,9 @@ public class PostIt {
      */
     public void printBottom() {
         System.out.format("|_______________|%n");
+    }
+
+    public String getNote() {
+        return note;
     }
 }

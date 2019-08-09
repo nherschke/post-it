@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Wall {
@@ -21,6 +24,21 @@ public class Wall {
     public void display() {
         for (PostIt p : postIts)
             p.post(this);
+    }
+
+    /**
+     * Saves the notes of all the post its in a text file
+     * @param file The file to save the notes to
+     * @throws IOException
+     */
+    public void savePosts(File file) throws IOException {
+        FileWriter fileWriter = new FileWriter(file, true);
+
+        for (PostIt p : postIts)
+            fileWriter.write(p.getNote());
+
+        if (fileWriter != null)
+            fileWriter.close();
     }
 
     public ArrayList<PostIt> getPostIts() {
