@@ -27,11 +27,14 @@ public class PostItApp {
         }
 
         c.printf("Welcome to your post it wall.%n");
+        c.printf("______________________________________________________________%n");
+        c.printf("[p]rint | [n]ew | [r]emove | [s]ave | [l]oad | [q]uit | [h]elp%n");
+        c.printf("--------------------------------------------------------------%n");
 
         while (!quit) {
-            c.printf("[p]rint | [n]ew | [r]emove | [s]ave | [l]oad | [q]uit%n> ");
             String choice;
 
+            c.printf("%n> ");
             choice = c.readLine();
 
             switch (choice) {
@@ -40,12 +43,15 @@ public class PostItApp {
                     break;
 
                 case "n":
-                    c.printf("Note: ");
+                    c.printf("Note> ");
                     String text = c.readLine();
                     wall.add(new PostIt(text));
                     break;
 
                 case "r":
+                    c.printf("Remove which note?> ");
+                    int index = Integer.parseInt(c.readLine());
+                    wall.removePostIt(index);
                     break;
 
                 case "s":
@@ -57,6 +63,7 @@ public class PostItApp {
                     break;
 
                 case "l":
+                    wall.loadPosts(storedNotes);
                     break;
 
                 case "q":
