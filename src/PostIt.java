@@ -1,5 +1,6 @@
 public class PostIt {
     private String note;
+    private boolean saved;
 
     public PostIt(String note) {
         this.note = note;
@@ -94,5 +95,13 @@ public class PostIt {
 
     public String getNote() {
         return note;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
     }
 }
