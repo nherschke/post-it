@@ -6,7 +6,7 @@ import java.io.IOException;
  * @author Nicolas Herschke
  */
 
-public class PostItApp {
+public class StickyNotesApp {
     public static void main(String[] args) {
         Console c = System.console();
         if (c == null) {
@@ -26,7 +26,7 @@ public class PostItApp {
             }
         }
 
-        c.printf("Welcome to your post it wall.%n");
+        c.printf("Welcome to your sticky notes wall.%n");
         c.printf("______________________________________________________________%n");
         c.printf("[p]rint | [n]ew | [r]emove | [s]ave | [l]oad | [q]uit | [h]elp%n");
         c.printf("--------------------------------------------------------------%n");
@@ -45,25 +45,25 @@ public class PostItApp {
                 case "n":
                     c.printf("Note> ");
                     String text = c.readLine();
-                    wall.add(new PostIt(text));
+                    wall.add(new StickyNote(text));
                     break;
 
                 case "r":
                     c.printf("Remove which note?> ");
                     int index = Integer.parseInt(c.readLine());
-                    wall.removePostIt(index);
+                    wall.removeStickyNote(index);
                     break;
 
                 case "s":
                     try {
-                        wall.savePosts(storedNotes);
+                        wall.saveNotes(storedNotes);
                     } catch (IOException e) {
                         System.err.format("Notes could not be saved.");
                     }
                     break;
 
                 case "l":
-                    wall.loadPosts(storedNotes);
+                    wall.loadNotes(storedNotes);
                     break;
 
                 case "q":

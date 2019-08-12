@@ -1,8 +1,7 @@
-public class PostIt {
+public class StickyNote {
     private String note;
-    private boolean saved;
 
-    public PostIt(String note) {
+    public StickyNote(String note) {
         this.note = note;
     }
 
@@ -10,7 +9,7 @@ public class PostIt {
      * Prints an ascii-art post it
      * @param wall The instance of Wall to post this on
      */
-    public void post(Wall wall) {
+    public void stick(Wall wall) {
         int rowsNeeded = (int) Math.ceil(note.length() / 13.0);
         if (rowsNeeded > 1)
             printMultiLiner(rowsNeeded);
@@ -95,13 +94,5 @@ public class PostIt {
 
     public String getNote() {
         return note;
-    }
-
-    public boolean isSaved() {
-        return saved;
-    }
-
-    public void setSaved(boolean saved) {
-        this.saved = saved;
     }
 }
