@@ -20,13 +20,7 @@ public class StickyNotesApp {
         Wall wall = new Wall();
 
         File storedNotes = new File("notes.txt");
-        if (!storedNotes.exists()) {
-            try {
-                storedNotes.createNewFile();
-            } catch (IOException e) {
-                System.err.format("File %s could not be created.", storedNotes);
-            }
-        }
+        if (!storedNotes.exists()) try { storedNotes.createNewFile(); } catch (IOException e) {}
 
         c.printf("Welcome to your sticky notes wall.%n");
         c.printf("______________________________________________________________%n");
@@ -36,7 +30,7 @@ public class StickyNotesApp {
         while (!quit) {
             String choice;
 
-            c.printf("%n> ");
+            c.printf("[command]> ");
             choice = c.readLine();
 
             switch (choice) {
