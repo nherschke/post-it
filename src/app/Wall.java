@@ -26,7 +26,7 @@ public class Wall {
      */
     public void display() {
         for (StickyNote p : stickyNotes)
-            p.stick(this);
+            p.stick();
     }
 
     public void saveNotes(File file) {
