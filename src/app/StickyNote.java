@@ -8,10 +8,9 @@ public class StickyNote {
     }
 
     /**
-     * Prints an ascii-art post it
-     * @param wall The instance of app.Wall to post this on
+     * Prints an ASCII sticky note
      */
-    public void stick(Wall wall) {
+    public void stick() {
         int rowsNeeded = (int) Math.ceil(note.length() / 13.0);
         if (rowsNeeded > 1)
             printMultiLiner(rowsNeeded);
@@ -21,7 +20,7 @@ public class StickyNote {
 
     /**
      * Formats the text so that the post its always have the same width
-     * @param note The text to put on the post it
+     * @param note The text to put on the sticky note
      * @param rowsNeeded The amount of rows needed to display the text
      * @return A string array containing the note broken up into lines
      */
@@ -43,7 +42,7 @@ public class StickyNote {
     }
 
     /**
-     * Prints a post it if the note only contains one line
+     * Prints a sticky note if the note only contains one line
      */
     public void printOneLiner() {
         if (note.length() < 13) {
@@ -59,7 +58,7 @@ public class StickyNote {
     }
 
     /**
-     * Prints a post it if the text contains multiple lines
+     * Prints a sticky note if the text contains multiple lines
      * @param amountOfRows The amount of rows needed to print the text
      */
     public void printMultiLiner(int amountOfRows) {
@@ -74,21 +73,21 @@ public class StickyNote {
     }
 
     /**
-     * Prints the top part of a post it
+     * Prints the top part of a sticky note
      */
     public void printTop() {
         System.out.format(" _______________%n");
     }
 
     /**
-     * Prints the middle part of a post it
+     * Prints the middle part of a sticky note
      */
     public void printMiddle() {
         System.out.format("|               |%n");
     }
 
     /**
-     * Prints the bottom part of a post it
+     * Prints the bottom part of a sticky note
      */
     public void printBottom() {
         System.out.format("|_______________|%n");
