@@ -19,7 +19,7 @@ public class StickyNote {
     }
 
     /**
-     * Formats the text so that the post its always have the same width
+     * Formats the text so that the sticky notes always have the same width
      * @param note The text to put on the sticky note
      * @param rowsNeeded The amount of rows needed to display the text
      * @return A string array containing the note broken up into lines
