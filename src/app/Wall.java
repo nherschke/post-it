@@ -29,6 +29,10 @@ public class Wall {
             p.stick();
     }
 
+    /**
+     * Saves all the notes currently on the wall into a text file
+     * @param file The text file
+     */
     public void saveNotes(File file) {
         FileWriter fileWriter = null;
 
@@ -61,25 +65,41 @@ public class Wall {
     }
 
     public void loadNotes(File file) {
-        ArrayList<String> notes = readInNotes(file);
-        for (String s : notes)
-            stickyNotes.add(new StickyNote(s));
+        ArrayList<String> savedNotes = readInNotes(file);
+        boolean[] toAdd = new boolean[savedNotes.size()];
+
+        for (String s : savedNotes) {
+            for (StickyNote sn : stickyNotes) {
+                String n = sn.getNote();
+
+                if (!(s.equals(n)))
+                    toAdd[savedNotes.indexOf(s)] = true;
+                else
+                    toAdd[savedNotes.indexOf(s)] = false;
+            }
+        }
+
+        for (int i = 0; i < toAdd.length; i++) {
+            if (toAdd[i])
+                stickyNotes.add(new StickyNote(savedNotes.get(i)));
+        }
     }
 
+    /**
+     * Reads the content of the savefile into an ArrayList
+     * @param file The savefile
+     * @return An ArrayList containing the saved notes
+     */
     public ArrayList<String> readInNotes(File file) {
         ArrayList<String> notes = new ArrayList<>();
-        Scanner scanner = null;
 
-        try {
-            scanner = new Scanner(file);
+        try (Scanner scanner = new Scanner(file)) {
             scanner.useDelimiter("\n");
 
             while (scanner.hasNext())
                 notes.add(scanner.next());
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            if (scanner != null) scanner.close();
         }
 
         return notes;
@@ -87,7 +107,7 @@ public class Wall {
 
     /**
      * Removes the specified instance of StickyNote from the wall
-     * @param index The index of the instance of StickyNote to remove from the postIt list
+     * @param index The index of the sticky note to remove
      */
     public void removeStickyNote(int index) {
         int realIndex = index - 1;
