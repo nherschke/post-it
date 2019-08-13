@@ -1,3 +1,5 @@
+package app;
+
 import java.io.Console;
 import java.io.File;
 import java.io.IOException;
@@ -49,17 +51,13 @@ public class StickyNotesApp {
                     break;
 
                 case "r":
-                    c.printf("Remove which note?> ");
+                    c.printf("Index> ");
                     int index = Integer.parseInt(c.readLine());
                     wall.removeStickyNote(index);
                     break;
 
                 case "s":
-                    try {
-                        wall.saveNotes(storedNotes);
-                    } catch (IOException e) {
-                        System.err.format("Notes could not be saved.");
-                    }
+                    wall.saveNotes(storedNotes);
                     break;
 
                 case "l":

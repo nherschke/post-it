@@ -1,3 +1,5 @@
+package app;
+
 public class StickyNote {
     private String note;
 
@@ -7,7 +9,7 @@ public class StickyNote {
 
     /**
      * Prints an ascii-art post it
-     * @param wall The instance of Wall to post this on
+     * @param wall The instance of app.Wall to post this on
      */
     public void stick(Wall wall) {
         int rowsNeeded = (int) Math.ceil(note.length() / 13.0);
