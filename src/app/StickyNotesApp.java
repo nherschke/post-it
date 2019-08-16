@@ -59,6 +59,21 @@ public class StickyNotesApp {
                     break;
 
                 case "q":
+                    c.printf("Save before exit? [y/n]> ");
+                    String answer = c.readLine();
+                    switch (answer) {
+                        case "y":
+                        case "Y":
+                        case "yes":
+                        case "Yes":
+                            wall.saveNotes(storedNotes);
+                            break;
+                        case "n":
+                        case "N":
+                        case "no":
+                        case "No":
+                            break;
+                    }
                     quit = true;
                     break;
 
