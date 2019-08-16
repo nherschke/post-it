@@ -64,25 +64,21 @@ public class Wall {
         }
     }
 
+    /**
+     * Loads the notes from the savefile and creates sticky notes from them
+     * @param file The savefile
+     */
     public void loadNotes(File file) {
         ArrayList<String> savedNotes = readInNotes(file);
-        boolean[] toAdd = new boolean[savedNotes.size()];
+        var displayedNotes = new ArrayList<String>();
 
-        for (String s : savedNotes) {
-            for (StickyNote sn : stickyNotes) {
-                String n = sn.getNote();
+        for (StickyNote sn : stickyNotes)
+            displayedNotes.add(sn.getNote());
 
-                if (!(s.equals(n)))
-                    toAdd[savedNotes.indexOf(s)] = true;
-                else
-                    toAdd[savedNotes.indexOf(s)] = false;
-            }
-        }
+        savedNotes.removeAll(displayedNotes);
 
-        for (int i = 0; i < toAdd.length; i++) {
-            if (toAdd[i])
-                stickyNotes.add(new StickyNote(savedNotes.get(i)));
-        }
+        for (String s : savedNotes)
+            stickyNotes.add(new StickyNote(s));
     }
 
     /**
