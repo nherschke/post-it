@@ -83,7 +83,6 @@ public class StickyNotesApp {
             }
         }
 
-        if (quit)
-            System.exit(0);
+        System.exit(0);
     }
 }
