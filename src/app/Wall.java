@@ -17,14 +17,14 @@ public class Wall {
      * Adds a new sticky note to the wall for displaying
      * @param stickyNote The instance of StickyNote to add to the wall
      */
-    public void add(StickyNote stickyNote) {
+    void add(StickyNote stickyNote) {
         stickyNotes.add(stickyNote);
     }
 
     /**
      * Renders all the sticky notes on this wall
      */
-    public void display() {
+    void display() {
         for (StickyNote p : stickyNotes)
             p.stick();
     }
@@ -33,7 +33,7 @@ public class Wall {
      * Saves all the notes currently on the wall into a text file
      * @param file The text file
      */
-    public void saveNotes(File file) {
+    void saveNotes(File file) {
         FileWriter fileWriter = null;
 
         try {
@@ -60,7 +60,7 @@ public class Wall {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (fileWriter != null) try { fileWriter.close(); } catch (IOException e) {}
+            if (fileWriter != null) try { fileWriter.close(); } catch (IOException ignored) {}
         }
     }
 
@@ -68,7 +68,7 @@ public class Wall {
      * Loads the notes from the savefile and creates sticky notes from them
      * @param file The savefile
      */
-    public void loadNotes(File file) {
+    void loadNotes(File file) {
         ArrayList<String> savedNotes = readInNotes(file);
         var displayedNotes = new ArrayList<String>();
 
@@ -105,13 +105,13 @@ public class Wall {
      * Removes the specified instance of StickyNote from the wall
      * @param index The index of the sticky note to remove
      */
-    public void removeStickyNote(int index) {
+    void removeStickyNote(int index) {
         int realIndex = index - 1;
         if (realIndex < stickyNotes.size() && realIndex > 0) {
             StickyNote toRemove = stickyNotes.get(realIndex);
             stickyNotes.remove(toRemove);
         } else {
-            System.err.format("No post it at this index.%n");
+            System.err.format("No sticky note at this index.%n");
         }
     }
 
