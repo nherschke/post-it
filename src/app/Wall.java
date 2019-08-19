@@ -3,6 +3,7 @@ package app;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -79,6 +80,8 @@ public class Wall {
 
         for (String s : savedNotes)
             stickyNotes.add(new StickyNote(s));
+
+        try { new PrintWriter(file).close(); } catch (IOException ignored) {}
     }
 
     /**
